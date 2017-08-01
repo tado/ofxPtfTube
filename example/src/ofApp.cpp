@@ -24,7 +24,6 @@ void ofApp::setup(){
         tube->addRadius(sin(i * speed * 5.0) * 5.0 + 15);
         tube->addColor(col);
     }
-    
     tube->generate();
 }
 

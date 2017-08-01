@@ -34,7 +34,7 @@ public:
     ofPolyline      polyline;
     vector<SpinePoint> spines;
 
-    vector<ofPoint> verts;
+    vector<ofPoint> segments;
     vector<ofColor> colors;
     vector<float> radiuses;
 };

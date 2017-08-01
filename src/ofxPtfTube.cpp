@@ -1,7 +1,9 @@
 #include "ofxPtfTube.h"
 
 ofxPtfTube::ofxPtfTube(){
-    
+    segments.clear();
+    radiuses.clear();
+    colors.clear();
 }
 
 
@@ -20,11 +22,11 @@ void ofxPtfTube::draw(){
 void ofxPtfTube::generate(){
     ofVec3f lastVert;
     int index = 0;
-    for ( int i=0; i<verts.size(); i++) {
-        if ( lastVert.squareDistance( verts[i] ) > 0.1f ) {
+    for ( int i=0; i<segments.size(); i++) {
+        if ( lastVert.squareDistance( segments[i] ) > 0.1f ) {
             spines.push_back( SpinePoint() );
-            spines[index].loc = verts[i];
-            lastVert = verts[i];
+            spines[index].loc = segments[i];
+            lastVert = segments[i];
             index++;
         }
     }
@@ -33,7 +35,7 @@ void ofxPtfTube::generate(){
 }
 
 void ofxPtfTube::addSegment(ofVec3f segment){
-    verts.push_back(segment);
+    segments.push_back(segment);
 }
 void ofxPtfTube::addColor(ofColor color){
     colors.push_back(color);
@@ -44,16 +46,18 @@ void ofxPtfTube::addRadius(float radius){
 
 void ofxPtfTube::createVboFromSpine( ofVboMesh& vboMesh, const vector<SpinePoint>& spine, float width, float thickness ) {
     vboMesh.clear();
-    
     int num_segments = 128;
-    
     vector<ofVec3f> vertex;
-    
-    //float radius = 20.0f;
     
     for ( int a=0; a<spine.size(); a++ ) {
         //float r = sin(a * 0.01) * 5.0 + 10.0;
-        float r = radiuses[a];
+        
+        float r;
+        if (radiuses.size() < segments.size()) {
+            r = 10.0;
+        } else {
+            r = radiuses[a];
+        }
         
         ofVec3f side = spine[a].orientation.up;
         float angle_to_rotate = TWO_PI/(float)num_segments;
@@ -71,14 +75,19 @@ void ofxPtfTube::createVboFromSpine( ofVboMesh& vboMesh, const vector<SpinePoint
     for ( int i=1; i<spine.size()-2; i++ ) {
         int index = i*num_segments;
         
-        //ofColor col;
+        ofColor col;
+        if (colors.size() < segments.size()) {
+            col = ofColor(127);
+        } else {
+            col = colors[i];
+        }
         
         for ( int j=0; j<num_segments-1; j++ ) {
             ofVec3f a = vertex[index + j];
             ofVec3f b = vertex[index + j + 1];
             ofVec3f c = vertex[index + j + num_segments + 1];
             ofVec3f d = vertex[index + j + num_segments];
-            addFace( vboMesh, a, b, c, d , colors[i]);
+            addFace( vboMesh, a, b, c, d , col);
         }
         
         // close end to beginning
@@ -87,7 +96,7 @@ void ofxPtfTube::createVboFromSpine( ofVboMesh& vboMesh, const vector<SpinePoint
         ofVec3f c = vertex[index + num_segments];
         ofVec3f d = vertex[index + num_segments + num_segments-1];
         
-        addFace( vboMesh, a, b, c, d, colors[i]);
+        addFace( vboMesh, a, b, c, d, col);
     }
 }
 
