@@ -21,7 +21,7 @@ void ofApp::setup(){
         ofColor col;
         col.setHsb(hue, 127, 255);
         tube->addSegment(position);
-        tube->addRadius(sin(i * speed * 5.0) * 5.0 + 15);
+        tube->addRadius(sin(i * speed * 5.0) * 10.0 + 25);
         tube->addColor(col);
     }
     tube->generate();
