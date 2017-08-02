@@ -4,7 +4,7 @@ ofxPtfTube::ofxPtfTube(){
     segments.clear();
     radiuses.clear();
     colors.clear();
-    spines.clear();
+    //spines.clear();
 }
 
 
@@ -26,18 +26,22 @@ void ofxPtfTube::clear(){
 }
 
 void ofxPtfTube::generate(){
+    spines.clear();
+    
     ofVec3f lastVert;
     int index = 0;
-    for ( int i=0; i<segments.size(); i++) {
+    for (int i=0; i<segments.size(); i++) {
         if ( lastVert.squareDistance( segments[i] ) > 0.1f ) {
-            spines.push_back( SpinePoint() );
+            spines.push_back(SpinePoint());
             spines[index].loc = segments[i];
             lastVert = segments[i];
             index++;
         }
     }
-    calculatePTF(spines);
-    createVboFromSpine(spineMeshes, spines, 4.0f, 1.0f);
+    if (spines.size() > 3) {
+        calculatePTF(spines);
+        createVboFromSpine(spineMeshes, spines, 4.0f, 1.0f);
+    }
 }
 
 void ofxPtfTube::addSegment(ofVec3f segment){
