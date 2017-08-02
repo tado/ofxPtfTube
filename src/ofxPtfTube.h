@@ -21,6 +21,7 @@ public:
     void addSegment(ofVec3f segment);
     void addColor(ofColor color);
     void addRadius(float radius);
+    void clear();
     
     void generate();
     void calculatePTF( vector<SpinePoint>& spine );

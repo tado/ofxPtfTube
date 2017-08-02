@@ -4,6 +4,7 @@ ofxPtfTube::ofxPtfTube(){
     segments.clear();
     radiuses.clear();
     colors.clear();
+    spines.clear();
 }
 
 
@@ -12,11 +13,16 @@ void ofxPtfTube::update(){
 }
 
 void ofxPtfTube::draw(){
-    ofEnableDepthTest();
     //drawSpineAxes(spines); // DEBUG
     vector<ofVboMesh>::iterator it;
     spineMeshes.drawFaces();
-    ofDisableDepthTest();
+}
+
+void ofxPtfTube::clear(){
+    segments.clear();
+    radiuses.clear();
+    colors.clear();
+    spines.clear();
 }
 
 void ofxPtfTube::generate(){
