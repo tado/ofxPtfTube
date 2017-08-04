@@ -25,12 +25,12 @@ public:
     
     void generate();
     void calculatePTF( vector<SpinePoint>& spine );
-    void createVboFromSpine( ofVboMesh& vboMesh, const vector<SpinePoint>& spine, float width=1.0f, float thickness=1.0f );
+    void createVboFromSpine( ofMesh& vboMesh, const vector<SpinePoint>& spine, float width=1.0f, float thickness=1.0f );
     void drawSpineAxes( const vector<SpinePoint>& spine );
     void addTwoOneFace(ofMesh& mesh, ofVec3f a, ofVec3f b, ofVec3f c, ofColor col);
     void addFace(ofMesh& mesh, ofVec3f a, ofVec3f b, ofVec3f c, ofVec3f d, ofColor col);
     
-    ofVboMesh spineMeshes;
+    ofMesh spineMeshes;
 
     ofPolyline      polyline;
     vector<SpinePoint> spines;
