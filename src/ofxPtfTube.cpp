@@ -56,7 +56,7 @@ void ofxPtfTube::addRadius(float radius){
 
 void ofxPtfTube::createVboFromSpine( ofVboMesh& vboMesh, const vector<SpinePoint>& spine, float width, float thickness ) {
     vboMesh.clear();
-    int num_segments = 128;
+    int num_segments = 32;
     vector<ofVec3f> vertex;
     
     for ( int a=0; a<spine.size(); a++ ) {
