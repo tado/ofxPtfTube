@@ -9,7 +9,7 @@ void ofApp::setup(){
     
     tube = new ofxPtfTube();
     
-    //generate curves
+    //3D curve
     float speed = 0.01;
     for (int i = 0; i < 4000; i++) {
         ofVec3f position;
@@ -24,6 +24,8 @@ void ofApp::setup(){
         tube->addRadius(sin(i * speed * 3.0) * 12.0 + 26.0);
         tube->addColor(col);
     }
+    
+    //generate tube
     tube->generate();
 }
 
@@ -36,6 +38,7 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackgroundGradient(ofColor(127), ofColor(91));
     cam.begin();
+    ofRotate(ofGetElapsedTimef()*10, 0, 1, 0);
     ofEnableDepthTest();
     tube->draw();
     ofDisableDepthTest();

@@ -1,20 +1,14 @@
 #include "ofxPtfTube.h"
 
 ofxPtfTube::ofxPtfTube(){
-    segments.clear();
-    radiuses.clear();
-    colors.clear();
-    //spines.clear();
+    num_segments = 64;
 }
 
 
 void ofxPtfTube::update(){
-    
 }
 
 void ofxPtfTube::draw(){
-    //drawSpineAxes(spines); // DEBUG
-    vector<ofVboMesh>::iterator it;
     spineMeshes.drawFaces();
 }
 
@@ -56,12 +50,9 @@ void ofxPtfTube::addRadius(float radius){
 
 void ofxPtfTube::createVboFromSpine( ofMesh& vboMesh, const vector<SpinePoint>& spine, float width, float thickness ) {
     vboMesh.clear();
-    int num_segments = 32;
     vector<ofVec3f> vertex;
     
     for ( int a=0; a<spine.size(); a++ ) {
-        //float r = sin(a * 0.01) * 5.0 + 10.0;
-        
         float r;
         if (radiuses.size() < segments.size()) {
             r = 10.0;

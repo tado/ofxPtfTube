@@ -38,4 +38,6 @@ public:
     vector<ofPoint> segments;
     vector<ofColor> colors;
     vector<float> radiuses;
+    
+    int num_segments;
 };
