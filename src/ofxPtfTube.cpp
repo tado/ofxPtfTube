@@ -1,7 +1,7 @@
 #include "ofxPtfTube.h"
 
-ofxPtfTube::ofxPtfTube(){
-    num_segments = 64;
+ofxPtfTube::ofxPtfTube(int _num_sengments){
+    num_segments = _num_sengments;
 }
 
 

@@ -14,7 +14,7 @@ public:
         ofVec3f loc;
     };
     
-    ofxPtfTube();
+    ofxPtfTube(int num_segments = 32);
     void update();
     void draw();
 

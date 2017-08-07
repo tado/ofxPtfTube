@@ -20,9 +20,9 @@ void ofApp::setup(){
         float hue = abs(sin(i * speed) * 255);
         ofColor col;
         col.setHsb(hue, 127, 255);
-        tube->addSegment(position);
-        tube->addRadius(sin(i * speed * 3.0) * 12.0 + 26.0);
-        tube->addColor(col);
+        tube->addSegment(position); //set segment positino (ofVec3f)
+        tube->addRadius(sin(i * speed * 3.0) * 12.0 + 26.0); //set tube radius
+        tube->addColor(col); //set tube color
     }
     
     //generate tube
